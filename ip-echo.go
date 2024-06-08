@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
 	"net"
 	"strings"
 )
@@ -28,6 +29,9 @@ func main() {
 
 		addr := connection.RemoteAddr().String()
 		addr = strings.Split(addr, ":")[0]
+
+		log.Println(addr)
+
 		connection.Write([]byte(addr))
 		connection.Close()
 	}
