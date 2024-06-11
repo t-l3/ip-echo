@@ -28,7 +28,13 @@ func main() {
 		}
 
 		addr := connection.RemoteAddr().String()
-		addr = strings.Split(addr, ":")[0]
+		addr4 := strings.Split(addr, ":")[0]
+
+		if net.ParseIP(addr4).To4() == nil {
+			addr = addr[:strings.Index(addr, "]")+1]
+		} else {
+			addr = addr4
+		}
 
 		log.Println(addr)
 
